@@ -2,8 +2,8 @@ from typing import Text
 from sqlalchemy import Column, Integer, Text, DateTime, func, ForeignKey
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from datetime import datetime
-from ormopt.models.base import Base
-from ormopt.models.inventory import Inventory
+from ormopt_part2.models.base import Base
+from ormopt_part2.models.inventory import Inventory
 
 class Rental(Base):
     __tablename__ = 'rental'

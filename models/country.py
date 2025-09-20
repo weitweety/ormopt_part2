@@ -2,7 +2,7 @@ from typing import Text
 from sqlalchemy import Column, Integer, Text, DateTime, func, ForeignKey
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from datetime import datetime
-from ormopt.models.base import Base
+from ormopt_part2.models.base import Base
 
 class Country(Base):
     __tablename__ = 'country'
