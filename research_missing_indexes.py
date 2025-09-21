@@ -17,7 +17,7 @@ def main():
         start_time = time.time()
         rentals = session.query(rental.Rental).filter(
             rental.Rental.return_date < datetime(2022, 6, 22, tzinfo=timezone.utc)
-        ).order_by(rental.Rental.return_date).limit(100).all()
+        ).order_by(rental.Rental.return_date, rental.Rental.customer_id).limit(100).all()
         data[0][x] = time.time() - start_time
         session.commit()
 
@@ -34,7 +34,7 @@ def main():
         start_time = time.time()
         rentals = session.query(rental.Rental).filter(
             rental.Rental.return_date < datetime(2022, 6, 22, tzinfo=timezone.utc)
-        ).order_by(rental.Rental.return_date).limit(100).all()
+        ).order_by(rental.Rental.return_date, rental.Rental.customer_id).limit(100).all()
         data[1][x] = time.time() - start_time
         session.commit()
     
@@ -52,7 +52,7 @@ def main():
         start_time = time.time()
         rentals = session.query(rental.Rental).filter(
             rental.Rental.return_date < datetime(2022, 6, 22, tzinfo=timezone.utc)
-        ).order_by(rental.Rental.return_date).limit(100).all()
+        ).order_by(rental.Rental.return_date, rental.Rental.customer_id).limit(100).all()
         data[2][x] = time.time() - start_time
         session.commit()
 
@@ -61,7 +61,7 @@ def main():
         idx_returndate_customerid.drop(conn)
 
     print("data:", data)
-    labels = ["No index", "Wrong order", "Correct order"]
+    labels = ["No index", "Wrong order\n(customer_id, return_date)", "Correct order\n (return_date, customer_id)"]
 
     plt.figure(figsize=(7,5))
     plt.boxplot(data, labels=labels)
